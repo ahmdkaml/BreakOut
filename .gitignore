@@ -21,6 +21,8 @@ Assets/Plugins/Editor/JetBrains*
 *.csproj
 *.unityproj
 *.sln
+*.slnx
+*.vsconfig
 *.suo
 *.tmp
 *.user
