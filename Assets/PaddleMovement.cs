@@ -3,13 +3,33 @@ using UnityEngine.InputSystem;
 
 public class PaddleMovement : MonoBehaviour
 {
+    // camera related variables
+    private Camera mainCamera;
+    private float cameraCenterX;
+    private float cameraHalfWidth;
+
+    // paddle related variables
+    private float minX;
+    private float maxX;
     [SerializeField] private float speed = 10f;
-    private Rigidbody2D rb;
     private float moveInput;
     [SerializeField] private InputActionReference moveAction;
+    private Rigidbody2D rb;
+
+    private Collider2D paddleCollider;
+
+    private float paddleHalfWidth;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        paddleCollider = GetComponent<Collider2D>();
+        paddleHalfWidth = paddleCollider.bounds.extents.x;
+        mainCamera = Camera.main;
+        cameraHalfWidth = mainCamera.orthographicSize * mainCamera.aspect;
+        cameraCenterX = mainCamera.transform.position.x;
+        minX = cameraCenterX - cameraHalfWidth + paddleHalfWidth;
+        maxX = cameraCenterX + cameraHalfWidth - paddleHalfWidth;
     }
     private void OnEnable()
     {
@@ -35,7 +55,8 @@ public class PaddleMovement : MonoBehaviour
     {
         float movement = moveInput * speed * Time.fixedDeltaTime;
         Vector2 currentPosition = rb.position;
-        Vector2 targetPosition = new Vector2(currentPosition.x + movement, currentPosition.y);
+        float newXPosition = Mathf.Clamp(currentPosition.x + movement, minX, maxX);
+        Vector2 targetPosition = new Vector2(newXPosition, currentPosition.y);
         rb.MovePosition(targetPosition);
     }
 }
