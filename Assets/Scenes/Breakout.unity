@@ -364,6 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90140b6f84034b34abaf7bbdff503d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallLossDetector
+  ballMovement: {fileID: 2028341073}
 --- !u!61 &1287666476
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -931,6 +932,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 851f128646e6c1348a835a0f9788ab12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallMovement
+  paddle: {fileID: 1339670609}
+  paddleOffset: {x: 0, y: 0.4}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
