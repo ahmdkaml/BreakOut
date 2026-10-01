@@ -28,4 +28,10 @@ public class BallMovement : MonoBehaviour
             isLaunched = true;
         }
     }
+    public void ResetToPaddle()
+    {
+        isLaunched = false;
+        rb.linearVelocity = Vector2.zero;
+        transform.position = paddle.position + (Vector3)paddleOffset;
+    }
 }
